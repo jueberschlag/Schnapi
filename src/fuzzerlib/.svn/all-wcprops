@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/Fuzzing/!svn/ver/225/trunk/Schnapi/src/fuzzerlib
+END
+byteSwap.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Fuzzing/!svn/ver/129/trunk/Schnapi/src/fuzzerlib/byteSwap.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Fuzzing/!svn/ver/129/trunk/Schnapi/src/fuzzerlib/__init__.py
+END
+generator.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Fuzzing/!svn/ver/129/trunk/Schnapi/src/fuzzerlib/generator.py
+END
+protolib.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Fuzzing/!svn/ver/166/trunk/Schnapi/src/fuzzerlib/protolib.py
+END
+fuzzerlib.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Fuzzing/!svn/ver/225/trunk/Schnapi/src/fuzzerlib/fuzzerlib.py
+END

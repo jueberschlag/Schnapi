@@ -1,0 +1,8 @@
+#!/bin/sh
+
+make all
+rm -f image.ps sortie*
+python3.2 schnapi.py -s etud.insa-toulouse.fr -p 80 -r 50
+echo "Début execution R"
+bash R --no-save < entreeR 
+evince image.ps &

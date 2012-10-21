@@ -1,0 +1,10 @@
+#!/bin/sh
+
+rm -f image.ps sortie*
+
+python3 description_generation.py -d ./description/http_description.xml
+python3 schnapi.py -s localhost -p 8181 -r 10 -j 8
+
+
+echo "Début execution R"
+bash R --no-save < entreeR

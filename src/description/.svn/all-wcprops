@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/Fuzzing/!svn/ver/226/trunk/Schnapi/src/description
+END
+http_description.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/Fuzzing/!svn/ver/173/trunk/Schnapi/src/description/http_description.xml
+END
+description_to_python.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/Fuzzing/!svn/ver/173/trunk/Schnapi/src/description/description_to_python.xsl
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Fuzzing/!svn/ver/168/trunk/Schnapi/src/description/Makefile
+END
+http_description_simplify.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/Fuzzing/!svn/ver/226/trunk/Schnapi/src/description/http_description_simplify.xml
+END

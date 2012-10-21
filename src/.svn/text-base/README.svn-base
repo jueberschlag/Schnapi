@@ -1,0 +1,18 @@
+Afin de générer la classe de génération de paramètres de fuzzing il faut lancer la commande suivante :
+  python description_generation.py
+
+Option :
+-d : lien vers la description du protocole cible
+
+
+Schnapi se lance via la commande :
+	python schnapi.py
+
+Options :
+-n : nom de la compagne de fuzzing
+-s : adresse du serveur distant à fuzzer
+-p : port à utiliser par le socket
+-r : nombre de requêtes fuzzées à envoyer sur le réseau
+-j : nombre de coeurs à utiliser pour la génération d'image
+
+Note : Lors de la première utilisation de Schnapi le lancement de description_generation.py avec l'option -d est OBLIGATOIRE afin de générer pour la premère fois le module param_generator.py propre à la description XML du protocole à fuzzer.

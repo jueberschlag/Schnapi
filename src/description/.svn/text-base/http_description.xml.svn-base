@@ -1,0 +1,360 @@
+<descriptionSchnapi>
+
+	<preambule>
+		<defaultlibraries />
+		<library name="protolib"/>
+		<library name="fuzzerlib.fuzzerlib"/>
+		<extcall name="init"/>
+	</preambule>
+
+	<main generator="request_generator">
+		<extcall name="print_request2" parameter="*r" />
+	</main>
+	
+	<generator name="request_generator">
+		<generatorAffectation name="methods" id="1" />
+		<value value="' '" />
+		<generatorAffectation name="urls" id="2" />
+		<value value="' '" />
+		<generatorAffectation name="versions" id="3" />
+		<value value="'\n'" />
+		<generatorAffectation name="headers" id="4" />
+	</generator>
+
+	<parameters name="methods" type="method">
+		<choice number="1">
+			<list>
+				<value value="'POST'" />
+				<value value="'DELETE'" />
+				<value value="'GET'" />
+				<value value="'HEAD'" />
+				<value value="'OPTIONS'" />
+				<value value="'PUT'" />
+				<value value="'TRACE'" />
+			</list>
+		</choice>
+	</parameters>
+
+	<parameters name="urls" type="path">
+		<choice number="1">
+			<list>
+				<value value="'/'" />
+				<value value="'/index.html'" />
+			</list>
+		</choice>
+	</parameters>
+
+	<parameters name="headers" type="unsuitable">
+		<choice number="+" separator="\n">
+			<dictionary>
+				<couple>
+					<key>
+						<value value="'Accept'" />
+					</key>
+					<value>
+						<generatorAffectation name="mime_types" id="4.1" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'Accept-Charset'" />
+					</key>
+					<value>
+						<generatorAffectation name="charset" id="4.2" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'Accept-Encoding'" />
+					</key>
+					<value>
+						<generatorAffectation name="encoding" id="4.3" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'Accept-Language'" />
+					</key>
+					<value>
+						<generatorAffectation name="language" id="4.4" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<!--Pour les réponses seulement-->
+						<value value="'Content-Encoding'" />
+					</key>
+					<value>
+						 <generatorAffectation name="encoding" id="4.5" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'Content-Language'" />
+					</key>
+					<value>
+						<generatorAffectation name="language" id="4.6" />
+					</value>	
+				</couple>
+				
+				<couple>
+					<key>
+						<value value="'Content-Type'" />
+					</key>
+					<value>
+						<generatorAffectation name="mime_types" id="4.7"/>
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'Date'" />
+					</key>
+					<value>
+						<value value="''" />
+					</value>	
+				</couple>
+				<!--A exploiter du coté fuzzing-->
+				<couple>
+					<key>
+						<value value="'Authorization'" />
+					</key>
+					<value>
+						<value value="''" />
+					</value>	
+				</couple>
+				<!--A exploiter du coté fuzzing-->
+				<couple>
+					<key>
+						<value value="'Content-Length'" />
+					</key>
+					<value>
+						<value value="''" />
+					</value>	
+				</couple>
+				<!--A exploiter du coté fuzzing-->
+				<couple>
+					<key>
+						<value value="'Content-MD5'" />
+					</key>
+					<value>
+						<value value="''" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'Forwarded'" />
+					</key>
+					<value>
+						<value value="''" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'From'" />
+					</key>
+					<value>
+						<value value="''" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'Link'" />
+					</key>
+					<value>
+						<value value="''" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'Orig-URL'" />
+					</key>
+					<value>
+						<value value="''" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'Referer'" />
+						<!--This is the address of the previous web page from which a link to the currently requested page was followed.-->
+					</key>
+					<value>
+						<value value="''" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'Upgrade'" />
+					</key>
+					<value>
+						<generatorAffectation name="upgrade" id="4.17" />
+					</value>	
+				</couple>
+				<couple>
+					<key>
+						<value value="'User-Agent'" />
+					</key>
+					<value>
+						<generatorAffectation name="agent" id="4.18" />
+					</value>	
+				</couple>
+			</dictionary>
+		</choice>
+	</parameters>
+
+	<parameters name="encoding" type="string">
+		<choice number="1">
+			<list>
+				<value value="'gzip'" />
+				<value value="'compress'" />
+				<value value="'deflate'" />
+				<value value="'identity'" />
+				<value value="'chunked'" />
+			</list>
+		</choice>
+	</parameters>
+
+	<parameters name="charset" type="string">
+		<choice number="1">
+			<list>
+				<value value="'utf-8'" /> 
+				<value value="'utf-16'" />
+				<value value="'iso-8859-1'" />
+				<value value="'iso-8859-2'" />
+				<value value="'iso-8859-3'" />
+				<value value="'iso-8859-4'" />
+				<value value="'iso-8859-5'" />
+				<value value="'iso-8859-6-i'" /> 
+				<value value="'iso-8859-7'" />
+				<value value="'iso-8859-8-i'" />
+				<value value="'iso-8859-9'" /> 
+				<value value="'iso-8859-10'" /> 
+				<value value="'iso-8859-13'" /> 
+				<value value="'iso-8859-14'" /> 
+				<value value="'iso-8859-15'" />
+				<value value="'us-ascii'" />
+				<value value="'euc-jp'" />
+				<value value="'shift_jis'" />
+				<value value="'iso-2022-jp'" />
+				<value value="'euc-kr'" />
+				<value value="'gb2312'" />
+				<value value="'gb18030'" />
+				<value value="'big5'" />
+				<value value="'tis-620'" /> 
+				<value value="'koi8-r'" />
+				<value value="'koi8-u'" />
+				<value value="'macintosh'" />
+				<value value="'windows-1250'" />
+				<value value="'windows-1251'" />
+				<value value="'windows-1252'" /> 
+				<value value="'windows-1253'" /> 
+				<value value="'windows-1254'" />
+				<value value="'windows-1255'" />
+				<value value="'windows-1256'" />
+				<value value="'windows-1257'" />
+			</list>
+		</choice>
+	</parameters>
+
+	<parameters name="language" type="string">
+		<choice number="1">
+			<list>
+				<value value="'en-us'" />
+				<value value="'fr'" />
+				<value value="'de'" />
+				<value value="'en-ca'" />
+				<value value="'zh'" />
+				<value value="'fi'" />
+			</list>
+		</choice>
+	</parameters>
+
+	<parameters name="upgrade" type="string">
+		<choice number="1">
+			<list>
+				<value value="'SHTTP/1.3'" />
+				<value value="'RTA/x11'" />
+				<value value="'IRC/6.9'" />
+				<value value="'HTTP/2.0'" />
+				<value value="'HTTP/1.0'" />
+				<value value="'HTTP/1.1'" />
+			</list>
+		</choice>
+	</parameters>
+
+		<parameters name="versions" type="version">
+		<choice number="1">
+			<list>
+				<value value="'HTTP/1.0'" />
+				<value value="'HTTP/1.1'" />
+				<value value="'HTTP/0.9'" />
+			</list>
+		</choice>
+	</parameters>
+
+	<parameters name="agent" type="string">
+		<choice number="1">
+			<list>
+				<value value="'WikiBrowser/1.0 Gecko/1.0'" />
+				<value value="'Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10'" />
+				<value value="'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)'" />
+			</list>
+		</choice>
+	</parameters>
+
+	<parameters name="mime_types" type="string">
+		<choice number="1">
+			<list>
+				<value value="'application/EDI-X12'" />
+				<value value="'application/EDIFACT'" />
+				<value value="'application/javascript'" />
+				<value value="'application/octet-stream'" />
+				<value value="'application/ogg'" />
+				<value value="'application/pdf'" />
+				<value value="'application/xhtml+xml'" />
+				<value value="'application/x-shockwave-flash'" />
+				<value value="'application/json'" />
+				<value value="'application/xml'" />
+				<value value="'application/zip'" />
+				<value value="'audio/mpeg'" />
+				<value value="'audio/x-ms-wma'" />
+				<value value="'audio/vnd.rn-realaudio'" />
+				<value value="'audio/x-wav'" />
+				<value value="'image/gif'" />
+				<value value="'image/jpeg'" />
+				<value value="'image/png'" />
+				<value value="'image/tiff'" />
+				<value value="'image/vnd.microsoft.icon'" />
+				<value value="'image/svg+xml'" />
+				<value value="'multipart/mixed'" />
+				<value value="'multipart/alternative'" />
+				<value value="'multipart/related'" />
+				<value value="'text/css'" />
+				<value value="'text/csv'" />
+				<value value="'text/html'" />
+				<value value="'text/javascript'" />
+				<value value="'text/plain'" />
+				<value value="'text/xml'" />
+				<value value="'video/mpeg'" />
+				<value value="'video/mp4'" />
+				<value value="'video/quicktime'" />
+				<value value="'video/x-ms-wmv'" />
+				<value value="'video/x-msvideo'" />
+				<value value="'video/x-flv'" />
+				<value value="'application/vnd.oasis.opendocument.text'" />
+				<value value="'application/vnd.oasis.opendocument.spreadsheet'" />
+				<value value="'application/vnd.oasis.opendocument.presentation'" />
+				<value value="'application/vnd.oasis.opendocument.graphics'" />
+				<value value="'application/vnd.ms-excel'" />
+				<value value="'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'" />
+				<value value="'application/vnd.ms-powerpoint'" />
+				<value value="'application/msword'" />
+				<value value="'application/vnd.openxmlformats-officedocument.wordprocessingml.document'" />
+				<value value="'application/vnd.mozilla.xul+xml'" />
+			</list>
+		</choice>
+	</parameters>
+
+	<postambule>
+		<extcall name="deinit"/>
+	</postambule>
+</descriptionSchnapi>

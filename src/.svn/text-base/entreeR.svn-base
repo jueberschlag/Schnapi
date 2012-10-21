@@ -1,0 +1,7 @@
+library(lattice) ;
+library(ellipse) ;
+x = read.table("sortieR_SchnapOperation") ;
+x = 1 - x ;
+ord <- order.dendrogram(as.dendrogram(hclust(as.dist(x)))) ;
+postscript("image.ps",colormodel="rgb");
+levelplot(as.matrix(x[ord,ord]), col.regions = topo.colors) ;

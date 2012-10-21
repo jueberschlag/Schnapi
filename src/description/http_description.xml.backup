@@ -1,0 +1,59 @@
+<descriptionSchnapi>
+
+	<preambule>
+		<defaultlibraries />
+		<library name="protolib"/>
+		<library name="fuzzerlib.fuzzerlib"/>
+		<extcall name="init"/>
+	</preambule>
+
+	<main generator="request_generator">
+		<extcall name="print_request2" parameter="*r" />
+	</main>
+	
+	<generator name="request_generator">
+		<generatorAffectation name="methods" id="1" />
+		<value value="' '" />
+		<generatorAffectation name="urls" id="2" />
+		<value value="' '" />
+		<generatorAffectation name="versions" id="3" />
+		<value value="'\n'" />
+	</generator>
+
+	<parameters name="methods" type="method">
+		<choice number="1">
+			<list>
+				<value value="'POST'" />
+				<value value="'DELETE'" />
+				<value value="'GET'" />
+				<value value="'HEAD'" />
+				<value value="'OPTIONS'" />
+				<value value="'PUT'" />
+				<value value="'TRACE'" />
+			</list>
+		</choice>
+	</parameters>
+
+	<parameters name="urls" type="path">
+		<choice number="1">
+			<list>
+				<value value="'/'" />
+				<value value="'/index.html'" />
+			</list>
+		</choice>
+	</parameters>
+	
+	<parameters name="versions" type="version">
+		<choice number="1">
+			<list>
+				<value value="'HTTP/1.0'" />
+				<value value="'HTTP/1.1'" />
+				<value value="'HTTP/0.9'" />
+			</list>
+		</choice>
+	</parameters>
+
+	<postambule>
+		<extcall name="deinit"/>
+	</postambule>
+</descriptionSchnapi>
